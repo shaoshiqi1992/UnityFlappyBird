@@ -13,6 +13,8 @@ public class CameraMovement : MonoBehaviour {
 		}
 		player = playerstart.transform;
 		offsetx = this.transform.position.x - player.position.x;
+		//Debug.Log (player);
+		//Debug.Log (offsetx);
 
 	}
 
@@ -20,7 +22,7 @@ public class CameraMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(player != null){
-			Vector3 position = transform.position;
+			Vector3 position = this.transform.position;
 			position.x = player.position.x + offsetx;
 			transform.position = position ;
 		}

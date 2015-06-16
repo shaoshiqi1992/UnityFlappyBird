@@ -2,16 +2,19 @@
 using System.Collections;
 
 public class BirdMovement : MonoBehaviour {
-	Vector3 velocity = Vector3.zero;
-	public Vector3 gravity;
-	public Vector3 flapvelocity;
+	//Vector3 velocity = Vector3.zero;
+	//public Vector3 gravity;
+	public float flapForce;
 	public float forwardspeed;
-	public float maxspeed;
+	//public float maxspeed;
 	bool flap = false;
-
+	bool fail = false;
+	Animator animator;
 	// Use this for initialization
 	void Start () {
-	
+		animator = transform.GetComponentInChildren<Animator> ();
+		//Debug.Log (animator);
+		GetComponent<Rigidbody2D> ().AddForce (Vector2.right*forwardspeed);
 	}
 	
 
@@ -20,26 +23,30 @@ public class BirdMovement : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space) || Input.GetMouseButtonDown(0)) {
 			flap = true;
 
-
 		}
 	}
 
 	void FixedUpdate(){
-		velocity.x = forwardspeed;
-		velocity += gravity * Time.deltaTime;
-		if (flap) {
-			flap =false;
-			if(velocity.y<0){
-				velocity.y = 0;
-			}
-			velocity += flapvelocity;
+		if (fail) {
+			return ;
 		}
-		velocity = Vector3.ClampMagnitude (velocity, maxspeed);
-		transform.position += velocity * Time.deltaTime;
-		float angle = 0;
-		if (velocity.y < 0) {
-			angle = Mathf.LerpAngle(0,-90,-velocity.y/maxspeed);
+
+		if (flap == true) {
+			GetComponent<Rigidbody2D> ().AddForce (Vector2.up * flapForce);
+			animator.SetTrigger("DoFlap");
+			flap = false;
 		}
-		transform.rotation = Quaternion.Euler (0, 0, angle);
+
+		if (GetComponent<Rigidbody2D> ().velocity.y > 0) {
+			transform.rotation = Quaternion.Euler (0, 0, 0);
+		}else{
+			float angle = Mathf.Lerp(0,-90,-GetComponent<Rigidbody2D>().velocity.y/3f);
+			transform.rotation = Quaternion.Euler (0, 0, angle);
+		}
+
+	}
+	void OnCollisionEnter2D(Collision2D collision){
+		animator.SetTrigger("Fail");
+		fail = true;
 	}
 }

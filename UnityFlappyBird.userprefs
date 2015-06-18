@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\flappyBird\Assets\flappyBird\scripts\score.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ScorePoint.cs">
     <Files>
-      <File FileName="..\flappyBird\Assets\flappyBird\scripts\score.cs" Line="35" Column="3" />
+      <File FileName="Assets\Scripts\Score.cs" Line="14" Column="16" />
+      <File FileName="Assets\Scripts\ScorePoint.cs" Line="9" Column="6" />
+      <File FileName="Assets\Scripts\BirdMovement.cs" Line="21" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

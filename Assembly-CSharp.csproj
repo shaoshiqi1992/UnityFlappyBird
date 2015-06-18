@@ -53,11 +53,12 @@
      <Compile Include="Assets\Done\scripts\road.cs" />
      <Compile Include="Assets\Done\scripts\roadGen.cs" />
      <Compile Include="Assets\Done\scripts\score.cs" />
-     <Compile Include="Assets\Score.cs" />
      <Compile Include="Assets\Scripts\BackgroundLoop.cs" />
      <Compile Include="Assets\Scripts\BirdMovement.cs" />
      <Compile Include="Assets\Scripts\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\GroundMovement.cs" />
+     <Compile Include="Assets\Scripts\Score.cs" />
+     <Compile Include="Assets\Scripts\ScorePoint.cs" />
      <Compile Include="Assets\Scripts\SkyMovement.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

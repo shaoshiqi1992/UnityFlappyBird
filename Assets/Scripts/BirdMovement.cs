@@ -6,9 +6,10 @@ public class BirdMovement : MonoBehaviour {
 	//public Vector3 gravity;
 	public float flapForce;
 	public float forwardspeed;
+	private float coolDown;
 	//public float maxspeed;
 	bool flap = false;
-	bool fail = false;
+	public bool fail = false;
 	Animator animator;
 	// Use this for initialization
 	void Start () {
@@ -20,9 +21,16 @@ public class BirdMovement : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Space) || Input.GetMouseButtonDown(0)) {
-			flap = true;
-
+		if (fail) {
+			coolDown -= Time.deltaTime;
+			if(coolDown <= 0 && Input.GetKeyDown (KeyCode.Space) || Input.GetMouseButtonDown(0)){
+				Application.LoadLevel(Application.loadedLevel);
+			}
+		} else {
+			if (Input.GetKeyDown (KeyCode.Space) || Input.GetMouseButtonDown(0)) {
+				flap = true;
+				
+			}
 		}
 	}
 
@@ -48,5 +56,6 @@ public class BirdMovement : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D collision){
 		animator.SetTrigger("Fail");
 		fail = true;
+		coolDown = 0.5f;
 	}
 }
